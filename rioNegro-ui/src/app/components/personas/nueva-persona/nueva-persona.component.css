@@ -1,0 +1,45 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+  
+  .flex-container mat-form-field {
+    padding: 5px;
+  }
+  
+  @media all and (max-width: 800px) {
+    .flex-container{
+        justify-content: flex-start;
+    }
+  }
+  
+  @media all and (min-width: 800px) {
+    .flex-item {
+      width: 700px;
+      height: 150px;
+      margin-top: 5px;
+      
+  
+      background-color: tomato;
+      color: white;
+      font-weight: bold;
+    }
+  }
+  
+  .flex-row {
+    height: 100%; 
+    flex-direction: row; 
+    box-sizing: border-box; 
+    display: flex; 
+    place-content: center space-around; 
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  #grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    max-width: 100%;
+  }

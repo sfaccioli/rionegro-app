@@ -1,0 +1,49 @@
+<div>
+    <mat-card *ngIf="loaded">
+        <div class="flex-container" >
+            <mat-form-field>
+                <mat-label>Id</mat-label>
+                <input matInput [(ngModel)]="persona.id" disabled="true">
+            </mat-form-field>    
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="persona.nombre">
+            </mat-form-field>
+        </div>
+        <div class="flex-container" >
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput [(ngModel)]="persona.apellido">
+            </mat-form-field>   
+            <mat-form-field>
+                <mat-label>Telefono</mat-label>
+                <input matInput [(ngModel)]="persona.telefono">
+            </mat-form-field>
+        </div>  
+        <div class="flex-container" >
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput [matDatepicker]="fechaNacimiento" [(ngModel)]="persona.fecha_nacimiento">
+                <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
+                <mat-datepicker #fechaNacimiento [startAt]="persona.fecha_nacimiento"></mat-datepicker>
+            </mat-form-field>
+            <!-- <mat-form-field>
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput>{{persona.fecha_nacimiento}}
+            </mat-form-field>    -->
+            <mat-form-field>
+                <mat-label>Rol</mat-label>
+                <input matInput [(ngModel)]="persona.rol">
+            </mat-form-field>
+        </div>         
+    </mat-card>
+
+        <button mat-raised-button color="primary" (click)="updatePersona(persona.id, persona)">
+            Guardar
+        </button>
+        <button mat-raised-button [routerLink]="['/personas']">
+            Volver
+        </button>  
+</div>
+
+

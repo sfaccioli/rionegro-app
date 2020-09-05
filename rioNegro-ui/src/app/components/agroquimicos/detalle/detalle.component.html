@@ -1,0 +1,22 @@
+<mat-card *ngIf="loaded">
+    <div class="flex-container" >
+        <mat-form-field>
+            <mat-label>Id</mat-label>
+            <input matInput>{{agroquimico.id}}
+        </mat-form-field>    
+        <mat-form-field>
+            <mat-label>Marca</mat-label>
+            <input matInput>{{agroquimico.marca}}
+        </mat-form-field>
+    </div>
+    <div class="flex-container" >
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput>{{agroquimico.nombre}}
+        </mat-form-field>   
+        <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <input matInput>{{agroquimico.tipoAgroquimico.nombre}}
+        </mat-form-field>
+    </div>         
+</mat-card>
