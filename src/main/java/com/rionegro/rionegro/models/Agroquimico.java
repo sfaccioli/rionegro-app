@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "agroquimico")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@org.springframework.data.annotation.Immutable
 public class Agroquimico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +21,24 @@ public class Agroquimico {
     private String descripcion;
     private String marca;
 
-    @JsonManagedReference
+
+    /*@JsonManagedReference
     @OneToMany(mappedBy = "agroquimico")
     Set<EmpresaStock> stockEmpresa;
+    */
 
-    @JsonManagedReference
-    @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "id")
-    TipoAgroquimico tipoAgroquimico;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "tipoAgroquimicoId")
+    TipoAgroquimico tipoagroquimico;
 
+    public TipoAgroquimico getTipoagroquimico() {
+        return tipoagroquimico;
+    }
+
+    public void setTipoagroquimico(TipoAgroquimico tipoagroquimico) {
+        this.tipoagroquimico = tipoagroquimico;
+    }
 
     public Long getId() {
         return id;
@@ -61,19 +72,15 @@ public class Agroquimico {
         this.marca = marca;
     }
 
+
+
+    /*
     public Set<EmpresaStock> getStockEmpresa() {
         return stockEmpresa;
     }
 
     public void setStockEmpresa(Set<EmpresaStock> stockEmpresa) {
         this.stockEmpresa = stockEmpresa;
-    }
+    }*/
 
-    public TipoAgroquimico getTipoAgroquimico() {
-        return tipoAgroquimico;
-    }
-
-    public void setTipoAgroquimico(TipoAgroquimico tipoAgroquimico) {
-        this.tipoAgroquimico = tipoAgroquimico;
-    }
 }

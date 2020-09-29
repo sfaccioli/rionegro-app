@@ -31,4 +31,8 @@ export class PersonasService {
     let body = JSON.stringify(persona);
     return this.http.post('/server/api/personas', body, httpOptions);
   }
+
+  deletePersona(id) {
+    return this.http.delete('/server/api/personas/' + id);
+  }
 }

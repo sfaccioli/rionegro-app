@@ -1,7 +1,9 @@
 package com.rionegro.rionegro.controllers;
 
 import com.rionegro.rionegro.models.Agroquimico;
+import com.rionegro.rionegro.models.TipoAgroquimico;
 import com.rionegro.rionegro.repositories.AgroquimicoRepository;
+import com.rionegro.rionegro.repositories.TipoAgroquimicoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ public class AgroquimicoController {
 
     @Autowired
     private AgroquimicoRepository agroquimicoRepository;
+    @Autowired
+    private TipoAgroquimicoRepository tipoAgroquimicoRepository;
 
 
     @GetMapping
@@ -27,6 +31,7 @@ public class AgroquimicoController {
     public Agroquimico get(@PathVariable Long id){
         return agroquimicoRepository.getOne(id);
     }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,21 +1,21 @@
 <form [formGroup]="personaForm" (ngSubmit)="saveNewPerson()">
     <mat-card>
         <div class="flex-container" >  
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre">
+                <input matInput class="input" formControlName="nombre">
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Apellido</mat-label>
                 <input matInput formControlName="apellido">
             </mat-form-field>   
         </div> 
         <div class="flex-container" >           
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Telefono</mat-label>
                 <input matInput formControlName="telefono">
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Fecha Nacimiento</mat-label>
                 <input matInput [matDatepicker]="fechaNacimiento" formControlName="fecha_nacimiento">
                 <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
@@ -23,11 +23,14 @@
             </mat-form-field>
         </div>  
         <div class="flex-container">
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Rol</mat-label>
                 <input matInput formControlName="rol">
             </mat-form-field>
         </div>     
     </mat-card>
     <button mat-raised-button type="submit" color="primary">Guardar</button>  
+    <button mat-raised-button class="action-button" [routerLink]="['/personas']">
+        Volver
+    </button>
 </form>

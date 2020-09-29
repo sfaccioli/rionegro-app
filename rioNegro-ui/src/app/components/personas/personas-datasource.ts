@@ -75,8 +75,8 @@ export class PersonasDataSource extends DataSource<PersonasItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'nombre': return compare(a.nombre, b.nombre, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'nombre': return compare(a.nombre, b.nombre, isAsc);
         case 'apellido': return compare(a.apellido, b.apellido, isAsc);
         default: return 0;
       }

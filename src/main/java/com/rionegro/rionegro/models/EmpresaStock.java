@@ -19,11 +19,11 @@ public class EmpresaStock {
     @JoinColumn(name = "id")
     Empresa empresa;
 
-    @JsonBackReference
+   /* @JsonBackReference
     @ManyToOne
     @MapsId("id")
     @JoinColumn(name = "id")
-    Agroquimico agroquimico;
+    Agroquimico agroquimico; */
 
     @ManyToOne
     @MapsId("id")
@@ -47,14 +47,14 @@ public class EmpresaStock {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
+/*
     public Agroquimico getAgroquimico() {
         return agroquimico;
     }
 
     public void setAgroquimico(Agroquimico agroquimico) {
         this.agroquimico = agroquimico;
-    }
+    }*/
 
     public float getCantidad() {
         return cantidad;

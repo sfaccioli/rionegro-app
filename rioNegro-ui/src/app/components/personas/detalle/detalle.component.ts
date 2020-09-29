@@ -1,6 +1,6 @@
 import { Component, OnInit, SimpleChanges, Input } from '@angular/core';
 import { PersonasService } from 'src/app/services/persona/personas.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { PersonasItem } from '../personas-datasource';
 import { PersonasComponent } from '../personas.component';
@@ -18,7 +18,7 @@ export class PersonaDetalleComponent implements OnInit {
   @Input() persona;
 
 
-  constructor(private personasService: PersonasService, private route: ActivatedRoute) { }
+  constructor(private personasService: PersonasService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getPersona(this.route.snapshot.params.id);
@@ -28,8 +28,10 @@ export class PersonaDetalleComponent implements OnInit {
     this.personasService.getPersona(id).subscribe(
       data => {
         this.persona = data;
+        if(this.persona.fecha_nacimiento) {
         var replacedDate = new Date( this.persona.fecha_nacimiento.replace( /(\d{2})-(\d{2})-(\d{4})/, "$3/$2/$1"));
         this.persona.fecha_nacimiento = this.getDate(replacedDate);
+        }
         this.loaded = true;
       },
       err => console.log(err),
@@ -38,12 +40,18 @@ export class PersonaDetalleComponent implements OnInit {
   }
 
   updatePersona(id: number, persona) {
-    persona.fecha_nacimiento = persona.fecha_nacimiento.toISOString().slice(0,10)
+    if(persona.fecha_nacimiento) {
+      persona.fecha_nacimiento = persona.fecha_nacimiento.toISOString().slice(0,10);
+    }
+  
     this.personasService.updatePersona(this.route.snapshot.params.id, persona).subscribe(
       data => {
         this.persona = data;
-        var replacedDate = new Date( this.persona.fecha_nacimiento.replace( /(\d{2})-(\d{2})-(\d{4})/, "$3/$2/$1"));
-        this.persona.fecha_nacimiento = this.getDate(replacedDate);
+        if(persona.fecha_nacimiento) {
+          var replacedDate = new Date( this.persona.fecha_nacimiento.replace( /(\d{2})-(\d{2})-(\d{4})/, "$3/$2/$1"));
+          this.persona.fecha_nacimiento = this.getDate(replacedDate);
+        }
+        this.router.navigateByUrl('/personas');
       },
       err => console.log(err),
       () => console.log('Persona updated')

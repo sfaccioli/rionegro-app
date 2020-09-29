@@ -1,3 +1,4 @@
+
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -11,7 +12,7 @@
   
   @media all and (max-width: 800px) {
     .flex-container{
-        justify-content: flex-start;
+        justify-content: space-around;
     }
   }
   
@@ -26,6 +27,10 @@
       color: white;
       font-weight: bold;
     }
+  }
+
+  .input {
+    size: 25px;
   }
   
   .flex-row {

@@ -8,6 +8,7 @@ import { AgroquimicosComponent } from './components/agroquimicos/agroquimicos.co
 import { AgroquimicoDetalleComponent } from './components/agroquimicos/detalle/detalle.component';
 import { PersonaDetalleComponent } from './components/personas/detalle/detalle.component';
 import { NuevaPersonaComponent } from './components/personas/nueva-persona/nueva-persona.component';
+import { NuevoAgroquimicoComponent } from './components/agroquimicos/nuevo-agroquimico/nuevo-agroquimico.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'agroquimicos',
     component: AgroquimicosComponent
+  },
+  {
+    path: 'agroquimicos/nuevo',
+    component: NuevoAgroquimicoComponent
   },
   {
     path: 'agroquimicos/:id',

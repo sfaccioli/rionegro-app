@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { AgroquimicosDataSource, AgroquimicosItem } from './agroquimicos-datasource';
 import { AgroquimicosServiceService } from 'src/app/services/agroquimico/agroquimicos-service.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoEliminacionComponent } from '../dialogo-eliminacion/dialogo-eliminacion.component';
 
 @Component({
   selector: 'app-agroquimicos',
@@ -20,9 +22,9 @@ export class AgroquimicosComponent implements AfterViewInit, OnInit {
   agroquimicosService = new AgroquimicosServiceService(this.http);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre', 'marca', 'descripcion'];
+  displayedColumns = ['eliminar', 'id', 'nombre', 'marca', 'descripcion', 'tipo', 'acciones', 'agregar'];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.getAgroquimicos();
@@ -44,4 +46,21 @@ export class AgroquimicosComponent implements AfterViewInit, OnInit {
       () => console.log('Agroquimicos loaded')
     )
   }
+
+  openDialog(nombre, idAgroquimico) {
+    const dialogRef = this.dialog.open(DialogoEliminacionComponent, {
+      data: {
+        mensaje: '¿Está seguro que quiere eliminar el agroquimico ' + nombre + '?',
+        id: idAgroquimico,
+        tipo: 'agroquimico'
+      }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if(!res) {
+        this.getAgroquimicos();
+      }
+      console.log(res);
+    });
+  }
+
 }

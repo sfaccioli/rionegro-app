@@ -1,0 +1,21 @@
+<form [formGroup]= "agroquimicoForm" class="normal-form">
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-title>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input matInput class="input" formControlName="nombre" placeholder="Nombre">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput formControlName="descripcion" placeholder="Descripción">
+                </mat-form-field>
+            </div>
+        </mat-grid-title>
+        <mat-grid-title>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input matInput formControlName="marca" placeholder="Marca">
+                </mat-form-field>
+            </div>
+        </mat-grid-title>
+    </mat-grid-list>
+</form>

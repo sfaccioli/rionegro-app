@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { PersonasDataSource, PersonasItem } from './personas-datasource';
 import { PersonasService } from 'src/app/services/persona/personas.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { DialogoEliminacionComponent } from '../dialogo-eliminacion/dialogo-eliminacion.component';
 
 @Component({
   selector: 'app-personas',
@@ -20,9 +22,9 @@ export class PersonasComponent implements AfterViewInit, OnInit {
   personasService = new PersonasService(this.http);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre', 'apellido', 'telefono', 'fecha_nacimiento', 'rol', 'editar'];
+  displayedColumns = ['eliminar', 'id', 'nombre', 'apellido', 'telefono', 'fecha_nacimiento', 'rol','editar', 'agregar'];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.getPersons();
@@ -44,4 +46,21 @@ export class PersonasComponent implements AfterViewInit, OnInit {
       () => console.log('Personas loaded')
     );
   }
+
+  openDialog(nombre, apellido, idPersona) {
+    const dialogRef = this.dialog.open(DialogoEliminacionComponent, {
+      data: {
+        mensaje: '¿Está seguro que quiere eliminar a ' + nombre + ' ' +  apellido + '?',
+        id: idPersona,
+        tipo: 'persona'
+      }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if(!res) {
+        this.getPersons();
+      }
+      console.log(res);
+    });
+  }
+
 }

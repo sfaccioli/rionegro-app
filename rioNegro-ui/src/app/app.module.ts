@@ -30,6 +30,10 @@ import { PersonaDetalleComponent } from './components/personas/detalle/detalle.c
 import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter } from '@angular/material/core';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule, MomentDateAdapter} from '@angular/material-moment-adapter';
 import { NuevaPersonaComponent } from './components/personas/nueva-persona/nueva-persona.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogoEliminacionComponent } from './components/dialogo-eliminacion/dialogo-eliminacion.component';
+import { NuevoAgroquimicoComponent } from './components/agroquimicos/nuevo-agroquimico/nuevo-agroquimico.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -42,7 +46,9 @@ import { NuevaPersonaComponent } from './components/personas/nueva-persona/nueva
     AgroquimicosComponent, 
     AgroquimicoDetalleComponent,
     PersonaDetalleComponent,
-    NuevaPersonaComponent
+    NuevaPersonaComponent,
+    DialogoEliminacionComponent,
+    NuevoAgroquimicoComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +62,7 @@ import { NuevaPersonaComponent } from './components/personas/nueva-persona/nueva
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatDialogModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
@@ -66,7 +73,8 @@ import { NuevaPersonaComponent } from './components/personas/nueva-persona/nueva
     MatSelectModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatGridListModule 
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-Ar'},

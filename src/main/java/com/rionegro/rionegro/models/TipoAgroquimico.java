@@ -14,20 +14,22 @@ public class TipoAgroquimico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id")
+    private Long tipoAgroquimicoId;
     private String nombre;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "tipoAgroquimico")
-    Set<Agroquimico> agroquimicos;
+
+    //@JsonBackReference
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoagroquimico")
+    //Set<Agroquimico> agroquimicos;
 
 
     public Long getId() {
-        return id;
+        return tipoAgroquimicoId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.tipoAgroquimicoId = id;
     }
 
     public String getNombre() {
@@ -38,11 +40,11 @@ public class TipoAgroquimico {
         this.nombre = nombre;
     }
 
-    public Set<Agroquimico> getAgroquimicos() {
+  /*  public Set<Agroquimico> getAgroquimicos() {
         return agroquimicos;
     }
 
     public void setAgroquimicos(Set<Agroquimico> agroquimicos) {
         this.agroquimicos = agroquimicos;
-    }
+    }*/
 }
